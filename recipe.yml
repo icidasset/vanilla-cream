@@ -10,7 +10,7 @@ stages:
       DEBIAN_FRONTEND: noninteractive
     runs:
       commands:
-        - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends\
+        - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
     modules:
       - name: init-setup
         type: shell
