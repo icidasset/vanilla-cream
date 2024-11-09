@@ -1,5 +1,5 @@
-name: "Tokono.ma Vanilla OS image"
-id: tokonoma-vanilla
+name: toko
+id: toko
 stages:
   - id: build
     base: ghcr.io/vanilla-os/nvidia:main
@@ -50,7 +50,7 @@ stages:
       - name: set-image-name-abroot
         type: includes
         includes:
-          - abroot/config.yml
+          - modules/abroot/config.yml
 
       - name: cleanup
         type: shell
