@@ -1,5 +1,5 @@
-# name: gnome-install
-# type: apt
-# source:
-#   packages:
-#     - gnome-tweaks
+name: gnome-install
+type: apt
+source:
+  packages:
+    - gnome-tweaks
