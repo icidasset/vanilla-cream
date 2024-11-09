@@ -1,4 +1,4 @@
-name: "Tokono.ma Vanilla OS image"
+name: toko
 id: toko
 stages:
   - id: build
