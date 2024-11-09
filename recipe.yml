@@ -22,26 +22,26 @@ stages:
       # Put your custom actions behind this comment
       ################################################
 
-      # - name: tailscale
-      #   type: includes
-      #   includes:
-      #     - modules/tailscale/install.yml
+      - name: tailscale
+        type: includes
+        includes:
+          - modules/tailscale/install.yml
 
-      # - name: gnome
-      #   type: includes
-      #   includes:
-      #     - modules/gnome/dependencies.yml
+      - name: gnome
+        type: includes
+        includes:
+          - modules/gnome/dependencies.yml
 
-      # - name: apps
-      #   type: includes
-      #   includes:
-      #     - modules/apps/1password.yml
-      #     - modules/apps/install.yml
+      - name: apps
+        type: includes
+        includes:
+          - modules/apps/1password.yml
+          - modules/apps/install.yml
 
-      # - name: shell
-      #   type: includes
-      #   includes:
-      #     - modules/shell/install.yml
+      - name: shell
+        type: includes
+        includes:
+          - modules/shell/install.yml
 
       ################################################
       # Put your custom actions before this comment
