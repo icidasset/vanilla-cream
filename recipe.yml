@@ -1,5 +1,5 @@
 name: "Tokono.ma Vanilla OS image"
-id: tokonoma-vanilla
+id: toko
 stages:
   - id: build
     base: ghcr.io/vanilla-os/nvidia:main
