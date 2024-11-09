@@ -1,0 +1,5 @@
+name: shell-install
+type: apt
+source:
+  packages:
+    - elvish
