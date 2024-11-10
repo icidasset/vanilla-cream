@@ -1,41 +1,45 @@
-name: toko
-id: toko
+name: toko-bluefin
+id: toko-bluefin
 stages:
   - id: build
-    base: ghcr.io/vanilla-os/nvidia:main
+    # NOTE: Can't get vanilla to work yet on my desktop machine
+    # base: ghcr.io/vanilla-os/nvidia:main
+    base: ghcr.io/ublue-os/bluefin-nvidia
     singlelayer: false
     labels:
       maintainer: self-maintained
-    args:
-      DEBIAN_FRONTEND: noninteractive
-    runs:
-      commands:
-        - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
+    # args:
+    #   DEBIAN_FRONTEND: noninteractive
+    # runs:
+    #   commands:
+    #     - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
     modules:
-      - name: init-setup
-        type: shell
-        commands:
-          - lpkg --unlock
-          - apt-get update
+      # - name: vanilla-os--pre
+      #   type: includes
+      #   includes:
+      #     - modules/vanilla-os/pre.yml
 
       ################################################
       # Put your custom actions behind this comment
       ################################################
 
-      - name: tailscale
-        type: includes
-        includes:
-          - modules/tailscale/install.yml
+      # NOTE: Already installed on bluefin
+      # - name: tailscale
+      #   type: includes
+      #   includes:
+      #     - modules/tailscale/install.yml
 
       - name: gnome
         type: includes
         includes:
-          - modules/gnome/dependencies.yml
+          # NOTE: Don't need to install gnome-tweaks on bluefin
+          # - modules/gnome/dependencies.yml
+          - modules/gnome/install-whitesur-theme.yml
 
       - name: apps
         type: includes
         includes:
-          - modules/apps/1password.yml
+          # - modules/apps/1password.yml
           - modules/apps/install.yml
 
       - name: shell
@@ -47,35 +51,7 @@ stages:
       # Put your custom actions before this comment
       ################################################
 
-      - name: set-image-name-abroot
-        type: includes
-        includes:
-          - modules/abroot/config.yml
-
-      - name: cleanup
-        type: shell
-        commands:
-          - apt-get autoremove -y
-          - apt-get clean
-          - lpkg --lock
-
-      - name: fsguard
-        type: fsguard
-        CustomFsGuard: false
-        FsGuardLocation: "/usr/sbin/FsGuard"
-        GenerateKey: true
-        FilelistPaths: ["/usr/bin"]
-        modules:
-          - name: remove-prev-fsguard
-            type: shell
-            commands:
-              - rm -rf /FsGuard
-              - rm -f ./minisign.pub ./minisign.key
-              - chmod +x /usr/sbin/init
-
-      - name: cleanup2
-        type: shell
-        commands:
-          - rm -rf /tmp/*
-          - rm -rf /var/tmp/*
-          - rm -rf /sources
+      # - name: vanilla-os--post
+      #   type: includes
+      #   includes:
+      #     - modules/vanilla-os/post.yml

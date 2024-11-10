@@ -1,0 +1,5 @@
+name: vanilla-os--pre
+type: shell
+commands:
+  - lpkg --unlock
+  - apt-get update

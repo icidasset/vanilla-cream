@@ -1,0 +1,7 @@
+name: vanilla-os--post
+type: includes
+includes:
+  - post/abroot.yml
+  - post/cleanup.yml
+  - post/fsguard.yml
+  - post/cleanup-2.yml

@@ -1,0 +1,6 @@
+name: cleanup
+type: shell
+commands:
+  - apt-get autoremove -y
+  - apt-get clean
+  - lpkg --lock
