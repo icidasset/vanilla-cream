@@ -8,12 +8,17 @@ stages:
     singlelayer: false
     labels:
       maintainer: self-maintained
-    args:
-      DEBIAN_FRONTEND: noninteractive
-    runs:
-      commands:
-        - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
+    # args:
+    #   DEBIAN_FRONTEND: noninteractive
+    # runs:
+    #   commands:
+    #     - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
     modules:
+      # - name: vanilla-os--pre
+      #   type: includes
+      #   includes:
+      #     - modules/vanilla-os/pre.yml
+
       - name: init-setup
         type: shell
         commands:
@@ -51,35 +56,7 @@ stages:
       # Put your custom actions before this comment
       ################################################
 
-      - name: set-image-name-abroot
-        type: includes
-        includes:
-          - modules/abroot/config.yml
-
-      - name: cleanup
-        type: shell
-        commands:
-          - apt-get autoremove -y
-          - apt-get clean
-          - lpkg --lock
-
-      - name: fsguard
-        type: fsguard
-        CustomFsGuard: false
-        FsGuardLocation: "/usr/sbin/FsGuard"
-        GenerateKey: true
-        FilelistPaths: ["/usr/bin"]
-        modules:
-          - name: remove-prev-fsguard
-            type: shell
-            commands:
-              - rm -rf /FsGuard
-              - rm -f ./minisign.pub ./minisign.key
-              - chmod +x /usr/sbin/init
-
-      - name: cleanup2
-        type: shell
-        commands:
-          - rm -rf /tmp/*
-          - rm -rf /var/tmp/*
-          - rm -rf /sources
+      # - name: vanilla-os--post
+      #   type: includes
+      #   includes:
+      #     - modules/vanilla-os/post.yml

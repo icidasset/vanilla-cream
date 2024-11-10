@@ -1,0 +1,6 @@
+name: cleanup-2
+type: shell
+commands:
+  - rm -rf /tmp/*
+  - rm -rf /var/tmp/*
+  - rm -rf /sources
