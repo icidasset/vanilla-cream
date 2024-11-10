@@ -22,7 +22,7 @@ stages:
       - name: init-setup
         type: shell
         commands:
-          - apt-get update
+          - sudo apt-get update
 
       ################################################
       # Put your custom actions behind this comment
@@ -44,7 +44,7 @@ stages:
       - name: apps
         type: includes
         includes:
-          - modules/apps/1password.yml
+          # - modules/apps/1password.yml
           - modules/apps/install.yml
 
       - name: shell
