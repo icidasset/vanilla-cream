@@ -19,11 +19,6 @@ stages:
       #   includes:
       #     - modules/vanilla-os/pre.yml
 
-      - name: init-setup
-        type: shell
-        commands:
-          - sudo apt-get update
-
       ################################################
       # Put your custom actions behind this comment
       ################################################
