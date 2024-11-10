@@ -22,7 +22,6 @@ stages:
       - name: init-setup
         type: shell
         commands:
-          - lpkg --unlock
           - apt-get update
 
       ################################################
@@ -38,7 +37,8 @@ stages:
       - name: gnome
         type: includes
         includes:
-          - modules/gnome/dependencies.yml
+          # NOTE: Don't need to install gnome-tweaks on bluefin
+          # - modules/gnome/dependencies.yml
           - modules/gnome/install-whitesur-theme.yml
 
       - name: apps
